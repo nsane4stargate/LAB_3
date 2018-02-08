@@ -5,7 +5,7 @@
 //GLOBAL VARIABLES
 
 const float diameter = 58.0, tolerance = .5;
-const float circumference = (PI * diameter), desiredDistanceMM = 500, k = 2; //angleIncrease is the equivalent of 1 degree in radians
+const float circumference = (PI * diameter), desiredDistanceMM = 500, k = 2; 
 
 const int motorControlTaskDelay = 1000, slewRate = 10;
 
@@ -41,6 +41,10 @@ void distance(){
 		displayTextLine(2,"%s: %i","current distance",currentDistance);
 		displayTextLine(3,"%s: %f","currentPower",currentPower);
 		displayTextLine(4,"%s: %f","desiredPower",desiredPower);
+		
+		/* The code below calculate the current distance travelled of the right 
+		 * motor and recalculates the sum of the currentDistance variable
+		 */
 		setMotorSync(RIGHT,LEFT,0,currentPower);
 		degreesTurned = getMotorEncoder(RIGHT);
 		currentDistance += ((degreesTurned/360) * circumference);
